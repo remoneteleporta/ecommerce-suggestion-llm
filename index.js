@@ -38,7 +38,7 @@ async function fetchProductData() {
     document.querySelector('.action-panel').style.display = 'none'
     loadingArea.style.display = 'flex'
     try {
-         const url = `https://serpapi.com/search.json?engine=google_shopping&q=${tickersArr}&google_domain=google.com&api_key=${process.env.SERP_API_KEY}`
+         const url = `https://serpapi.com/search.json?engine=google_shopping&q=iphone&google_domain=google.com&api_key=${process.env.SERP_API_KEY}`
             const response = await fetch(url)
             const data = await response.text()
             const status = await response.status
@@ -51,7 +51,7 @@ async function fetchProductData() {
             }
         }
      catch (err) {
-        loadingArea.innerText = 'There was an error fetching stock data.'
+        loadingArea.innerText = 'There was an error fetching product data.'
         console.error('error: ', err)
     }
 }
