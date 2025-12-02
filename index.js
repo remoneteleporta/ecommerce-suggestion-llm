@@ -66,7 +66,7 @@ async function fetchReport(data) {
             role: 'user',
             content: `${data}
             ###
-            The Samsung Galaxy A16 mmodel with 8 megapixel is best product to buy with 4.5 ratings and price below 100000 
+            The Samsung Galaxy A16 model with 8 megapixel is best product to buy with 4.5 ratings and price below 100000 
             ###
             `
         }
