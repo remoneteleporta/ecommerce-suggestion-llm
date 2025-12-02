@@ -38,7 +38,7 @@ async function fetchProductData() {
     document.querySelector('.action-panel').style.display = 'none'
     loadingArea.style.display = 'flex'
     try {
-         const url = `https://serpapi.com/search.json?engine=google_shopping&q=iphone&google_domain=google.com&api_key=${process.env.SERP_API_KEY}`
+         const url = `https://serpapi.com/search.json?engine=google_shopping&q=${tickersArr}&google_domain=google.com&api_key=e48ecfa633efab251da8080f9cde0875f9863a1ac0fb21a2cb0ce0d45cb196ed`
             const response = await fetch(url)
             const data = await response.text()
             const status = await response.status
@@ -74,7 +74,7 @@ async function fetchReport(data) {
 
     try {
         const openai = new OpenAI({
-            apiKey: OpenAI_API_KEY,
+            apiKey: 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,
             dangerouslyAllowBrowser: true
         })
         const response = await openai.chat.completions.create({
