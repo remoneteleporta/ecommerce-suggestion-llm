@@ -1,5 +1,5 @@
-import OpenAI from "openai"
-
+/* import OpenAI from "openai"
+ */
 let tickersArr = ""
 
 const generateReportBtn = document.querySelector('.generate-report-btn')
@@ -40,10 +40,11 @@ async function fetchProductData() {
     try {
          const url = `https://serpapi.com/search.json?engine=google_shopping&q=${tickersArr}&google_domain=google.com&api_key=${process.env.SERP_API_KEY}`
             const response = await fetch(url)
-            const data = await response.text()
+            const data = await response.json()
             const status = await response.status
             if (status === 200) {
                 apiMessage.innerText = 'Creating Product Suggestions...'
+                console.log(data)
                 const prodData = data
                 fetchReport(prodData)
             } else {
