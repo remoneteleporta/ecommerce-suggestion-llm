@@ -9,8 +9,9 @@
   },
   "dependencies": {
     "ai": "^5.0.106",
+    "dotenv": "^17.2.3",
     "open": "^11.0.0",
-    "openai": "^4.14.2",
+    "openai": "^4.104.0",
     "vite": "latest"
   }
 }

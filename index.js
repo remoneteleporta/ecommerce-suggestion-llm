@@ -1,4 +1,6 @@
 import OpenAI from "openai"
+import dotenv from "dotenv"
+dotenv.config()
 
 let tickersArr = ""
 
@@ -75,8 +77,7 @@ async function fetchReport(data) {
 
     try {
         const openai = new OpenAI({
-            apiKey: process.env.OPENAI_API_KEY,
-            dangerouslyAllowBrowser: true
+            apiKey: process.env.OPENAI_API_KEY
         })
         const response = await openai.chat.completions.create({
             model: 'gpt-5-nano',
