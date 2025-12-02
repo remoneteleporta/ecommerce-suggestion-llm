@@ -1,8 +1,10 @@
 html, body {
-    margin: 0;
+    margin: auto;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     background-color: #f6f6f6;
+    border: 2px solid black;
+    width: 500px;
 }
 
 * {
@@ -13,7 +15,6 @@ header {
     display: flex;
     justify-content: center;
     padding: 1em;
-    background-color: black;
     max-width: 500px;
     margin: 0 auto;
 }

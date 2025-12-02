@@ -1,75 +1,100 @@
-let productInput = "";
+import OpenAI from "openai"
 
-const generateReportBtn = document.querySelector(".generate-report-btn");
-const tickerInput = document.getElementById("ticker-input");
-const tickersDiv = document.querySelector(".ticker-choice-display");
-const loadingArea = document.querySelector(".loading-panel");
-const apiMessage = document.getElementById("api-message");
-const actionPanel = document.querySelector(".action-panel");
-const outputPanel = document.querySelector(".output-panel");
+let tickersArr = ""
 
-// Add product input
-document.querySelector(".add-ticker-btn").addEventListener("click", () => {
-  const value = tickerInput.value.trim();
+const generateReportBtn = document.querySelector('.generate-report-btn')
 
-  if (value.length >= 3) {
-    productInput = value.toLowerCase();
-    tickerInput.value = "";
-    renderTickers(productInput);
-    generateReportBtn.disabled = false;
-  } else {
-    const label = document.querySelector("label");
-    label.style.color = "red";
-    label.textContent =
-      "You must add at least product. E.g Football for Children.";
-  }
-});
+generateReportBtn.addEventListener('click', fetchProductData)
 
-function renderTickers(product) {
-  tickersDiv.textContent = product;
-  tickersDiv.classList.add("ticker");
+document.getElementById('ticker-input-form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const tickerInput = document.getElementById('ticker-input')
+    if (tickerInput.value.length >= 3) {
+        generateReportBtn.disabled = false
+        const newTickerStr = tickerInput.value
+        tickersArr =  newTickerStr.toLowerCase()
+        tickerInput.value = ''
+        renderTickers()
+    } else {
+        const label = document.getElementsByTagName('label')[0]
+        label.style.color = 'red'
+        label.textContent = 'You must add a product requirement. E.g Football for Kids.'
+    }
+})
+
+function renderTickers() {
+    const tickersDiv = document.querySelector('.ticker-choice-display')
+    tickersDiv.innerHTML = ''
+        const newTickerSpan = document.createElement('span')
+        newTickerSpan.textContent = tickersArr
+        newTickerSpan.classList.add('ticker')
+        tickersDiv.appendChild(newTickerSpan)
 }
 
-// Fetch product data from backend function
-generateReportBtn.addEventListener("click", fetchProductData);
+const loadingArea = document.querySelector('.loading-panel')
+const apiMessage = document.getElementById('api-message')
 
 async function fetchProductData() {
-  if (!productInput) return;
+    document.querySelector('.action-panel').style.display = 'none'
+    loadingArea.style.display = 'flex'
+    try {
+         const url = `https://serpapi.com/search.json?engine=google_shopping&q=${tickersArr}&google_domain=google.com&api_key=${process.env.SERP_API_KEY}`
+            const response = await fetch(url)
+            const data = await response.text()
+            const status = await response.status
+            if (status === 200) {
+                apiMessage.innerText = 'Creating Product Suggestions...'
+                const prodData = data
+                fetchReport(prodData)
+            } else {
+                loadingArea.innerText = 'There was an error fetching product data.'
+            }
+        }
+     catch (err) {
+        loadingArea.innerText = 'There was an error fetching stock data.'
+        console.error('error: ', err)
+    }
+}
 
-  actionPanel.style.display = "none";
-  loadingArea.style.display = "flex";
-  apiMessage.innerText = "Querying Products API...";
+async function fetchReport(data) {
+    const messages = [
+        {
+            role: 'system',
+            content: 'You are an Ecommerce Product suggestion Export who can look into all product data and suggest top 3 products, their brands, their price and ratings in 50 words'
+            },
+        {
+            role: 'user',
+            content: `${data}
+            ###
+            The Samsung Galaxy A16 mmodel with 8 megapixel is best product to buy with 4.5 ratings and price below 100000 
+            ###
+            `
+        }
+    ]
 
-  try {
-    // Call backend function (Netlify or Vercel)
-    const response = await fetch(
-      `/.netlify/functions/product?q=${encodeURIComponent(productInput)}`
-    );
-    const data = await response.json();
+    try {
+        const openai = new OpenAI({
+            apiKey: OpenAI_API_KEY,
+            dangerouslyAllowBrowser: true
+        })
+        const response = await openai.chat.completions.create({
+            model: 'gpt-5-nano',
+            messages: messages,
+            temperature: 1
+        })
+        renderReport(response.choices[0].message.content)
 
-    apiMessage.innerText = "Creating Product Suggestions...";
-
-    // Call AI backend function
-    const aiResponse = await fetch("/.netlify/functions/ai", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data }),
-    });
-
-    const aiOutput = await aiResponse.json();
-    renderReport(aiOutput);
-
-  } catch (err) {
-    console.error(err);
-    loadingArea.innerText = "There was an error fetching product data.";
-  }
+    } catch (err) {
+        console.log('Error:', err)
+        loadingArea.innerText = 'Unable to access AI. Please refresh and try again'
+    }
 }
 
 function renderReport(output) {
-  loadingArea.style.display = "none";
-  outputPanel.style.display = "flex";
-
-  const report = document.createElement("p");
-  report.textContent = output;
-  outputPanel.appendChild(report);
+    loadingArea.style.display = 'none'
+    const outputArea = document.querySelector('.output-panel')
+    const report = document.createElement('p')
+    outputArea.appendChild(report)
+    report.textContent = output
+    outputArea.style.display = 'flex'
 }

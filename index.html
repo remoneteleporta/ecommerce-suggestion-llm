@@ -2,7 +2,7 @@
 <html>
 
 	<head>
-		<title>Ecom Product Recommendations</title>
+		<title>Ecommerce Product Recommendations LLM</title>
 		<link rel="stylesheet" href="index.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,37 +12,37 @@
 
 	<body>
 		<header>
-			<img src="images/ecom-recommend.png" alt="Ecommerce Product Suggetions">
+			<img src="/images/ecom-recommend.png" alt="Ecommerce Product Recommendations LLM">
 		</header>
 		<main>
 			<section class="action-panel">
 				<form id="ticker-input-form">
-					<label for="ticker-input"> Add what product you are searching for to get super accurate product recommendations👇 </label>
+					<label for="ticker-input"> Add your product requirements below to get a super accurate recommendations👇</label>
 					<div class="form-input-control">
-						<input type="text" id="ticker-input" placeholder="Mobile Phone 5G for 1000">
-						<button type="button" class="add-ticker-btn">
+						<input type="text" id="ticker-input" placeholder="Mobile Phone below 10000">
+						<button class="add-ticker-btn">
 							<img src="images/add.svg" class="add-ticker-svg" alt="add"> 
 						</button>
 					</div>
 				</form>
 				<p class="ticker-choice-display">
-					Your product search will appear here...
+					Your product requirements will appear here...
 				</p>
-				<button class="generate-report-btn" disabled>
-					Get Suggestions
+				<button class="generate-report-btn" type="button" disabled>
+					Generate Suggestions
 				</button>
-				<p class="tag-line">Always correct 15% of the time!</p>
+				<p class="tag-line">Always correct 10% of the time!</p>
 			</section>
 			<section class="loading-panel">
 				<img src="images/loader.svg" alt="loading">
 				<div id="api-message">Querying Products API...</div>
 			</section>
 			<section class="output-panel">
-				<h2>Your Product Suggestions 😜</h2>
+				<h2>Your Product Recommendations!</h2>
 			</section>
 		</main>
 		<footer>
-			&copy; This is not real Product suggestion!
+			&copy; This is not real!
 		</footer>
 		<script src="index.js" type="module"></script>
 	</body>
