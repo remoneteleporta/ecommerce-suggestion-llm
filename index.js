@@ -8,7 +8,7 @@ const generateReportBtn = document.querySelector('.generate-report-btn')
 
 generateReportBtn.addEventListener('click', fetchProductData)
 
-document.getElementById('ticker-input-form').addEventListener('click', (e) => {
+document.getElementById('ticker-input-form').addEventListener('submit', (e) => {
     e.preventDefault()
     const tickerInput = document.getElementById('ticker-input')
     if (tickerInput.value.length >= 3) {
