@@ -77,7 +77,8 @@ async function fetchReport(data) {
 
     try {
         const openai = new OpenAI({
-            apiKey: process.env.OPENAI_API_KEY
+            apiKey: process.env.OPENAI_API_KEY,
+            dangerouslyAllowBrowser: true
         })
         const response = await openai.chat.completions.create({
             model: 'gpt-5-nano',
