@@ -14,7 +14,7 @@ document.getElementById('ticker-input-form').addEventListener('click', (e) => {
     if (tickerInput.value.length >= 3) {
         generateReportBtn.disabled = false
         const newTickerStr = tickerInput.value
-        tickersArr =  newTickerStr.toLowerCase()
+        tickersArr =  newTickerStr.toLowerCase().split(' ').join('+')
         tickerInput.value = ''
         renderTickers()
     } else {
