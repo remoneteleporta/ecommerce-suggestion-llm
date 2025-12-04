@@ -1,4 +1,4 @@
-const { OpenAI } = require('openai')
+import { OpenAI } from 'openai'
 let tickersArr = ""
 
 const generateReportBtn = document.querySelector('.generate-report-btn')
