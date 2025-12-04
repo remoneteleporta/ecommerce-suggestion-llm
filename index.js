@@ -1,7 +1,5 @@
-import { OpenAI } from 'openai'
-import { dotenv } from 'dotenv'
-dotenv.config()
-
+const { OpenAI } = require('openai')
+require('dotenv').config()
 let tickersArr = ""
 
 const generateReportBtn = document.querySelector('.generate-report-btn')
