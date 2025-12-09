@@ -85,14 +85,14 @@ p.tag-line {
 
 /* controls */
 
-form {
+#ticker-input-form {
     width: 360px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-label {
+#ticker-input-form p{
     text-align: center;
     padding: .43em;
     font-size: 15px;
