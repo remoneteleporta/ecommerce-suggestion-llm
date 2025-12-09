@@ -56,8 +56,15 @@ async function fetchProductData() {
 function renderReport(output) {
     loadingArea.style.display = 'none'
     const outputArea = document.querySelector('.output-panel')
-    const report = document.createElement('p')
-    outputArea.appendChild(report)
-    report.textContent = output
+    output.products.forEach((p) => {
+    const item = document.createElement("div");
+    item.style.margin = "10px 0";
+    item.innerHTML = `
+      <strong>${p.title}</strong><br>
+      ${p.price} — from ${p.source}<br>
+      <a href="${p.link}" target="_blank">View</a>
+    `;
+    outputArea.appendChild(item);
+  });
     outputArea.style.display = 'flex'
 }
