@@ -35,8 +35,7 @@ async function fetchProductData() {
     document.querySelector('.action-panel').style.display = 'none'
     loadingArea.style.display = 'flex'
     try {
-        const tick = encodeURIComponent(tickersArr);
-         const response = await fetch(`/api/search?q=${tick}`);
+         const response = await fetch(`/api/search?q=${tickersArr}`);
          const data = await response.json();
             const status = await response.status
             if (status === 200) {
