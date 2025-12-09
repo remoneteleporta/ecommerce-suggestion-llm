@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     // Fix + signs
     query = query.replace(/ /g, "+");
 
-    const serpUrl = `https://serpapi.com/search.json?engine=google_shopping&q=${query}&google_domain=google.com&api_key=${process.env.SERP_API_KEY}`;
+    const serpUrl = `https://serpapi.com/search.json?engine=google_shopping&q=${query}&google_domain=google.com&location=India&api_key=${process.env.SERP_API_KEY}`;
     const response = await fetch(serpUrl);
     
     if (!response.ok) {
