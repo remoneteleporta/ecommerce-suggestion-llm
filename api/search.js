@@ -2,7 +2,8 @@ import fetch from "node-fetch";
 
 export default async function handler(req, res) {
   try {
-    const query = req;
+    let query = req.query.q || "";
+    query = query.replace(/ /g, "+");  
     console.log(query)
     if (!query) {
       return res.status(400).json({ error: "Missing 'q' query parameter" });
