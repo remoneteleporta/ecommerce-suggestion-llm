@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
     // Example: just forward results + AI summary
     res.status(200).json({
-      summary: "AI summary placeholder",
+      summary: "AI Product Suggestions",
       products: data.shopping_results || []
     });
 

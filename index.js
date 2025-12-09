@@ -20,7 +20,6 @@ async function search() {
     item.innerHTML = `
       <strong>${p.title}</strong><br>
       ${p.price} — from ${p.source}<br>
-      <a href="${p.link}" target="_blank">View</a>
     `;
     resultsDiv.appendChild(item);
   });
