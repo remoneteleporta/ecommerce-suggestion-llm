@@ -1,49 +1,5 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Ecommerce Product Recommendations LLM</title>
-		<link rel="stylesheet" href="index.css">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	</head>
-
-	<body>
-		<header>
-			<img src="/images/ecom-recommend.png" alt="Ecommerce Product Recommendations LLM">
-		</header>
-		<main>
-			<section class="action-panel">
-				<div id="ticker-input-form">
-					<p id="label"> Add your product requirements below to get a super accurate recommendations👇</p>
-					<div class="form-input-control">
-						<input type="text" id="ticker-input" placeholder="Mobile Phone below 10000...">
-						<button type="submit" class="add-ticker-btn">
-							<img src="images/add.svg" class="add-ticker-svg" alt="add"> 
-						</button>
-					</div>
-				</div>
-				<p class="ticker-choice-display">
-					Your product requirements will appear here...
-				</p>
-				<button class="generate-report-btn" disabled>
-					Generate Suggestions
-				</button>
-				<p class="tag-line">Always correct 10% of the time!</p>
-			</section>
-			<section class="loading-panel">
-				<img src="images/loader.svg" alt="loading">
-				<div id="api-message">Querying Products API...</div>
-			</section>
-			<section class="output-panel">
-				<h2>Your Product Recommendations!</h2>
-			</section>
-		</main>
-		<footer>
-			&copy; This is not real!
-		</footer>
-		<script src="index.js" type="module"></script>
-	</body>
-
-</html>
+<input id="searchInput" placeholder="Search products..." />
+<button onclick="search()">Search</button>
+<pre id="summary"></pre>
+<div id="results"></div>
+<script src="index.js"></script>
